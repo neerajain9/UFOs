@@ -48,3 +48,7 @@ numbers.forEach(function(element){
 // OR
 numbers.forEach(i => console.log(i**2))
 
+//  filter function
+x =[1,2,3,4,5]
+x.filter(i => console.log(i>3))
+x.filter(i => i>3)
