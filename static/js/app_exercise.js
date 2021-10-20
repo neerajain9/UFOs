@@ -49,12 +49,12 @@ function handleClick() {
     // just be the original tableData.
     buildTable(filteredData);
 }
-
 // Attach an event to listen for the form button
 // link the code directly to the filter button
 // .on("click", handleClick) -> instruct D3 to execute handleClick() function
 // when the button with an id of filter-btn is clicked
 d3.selectAll("#filter-btn").on("click", handleClick);
+};
 
-// Build the table when the page loads
+// // Build the table when the page loads
 buildTable(tableData);
