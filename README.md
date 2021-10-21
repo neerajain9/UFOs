@@ -1,38 +1,46 @@
-# Mission-to-Mars (Module 10 Challenge)
+# UFO Sightings (Module 11 Challenge)
 
-## Overview 
-Robin is pretty happy with the previous results; our scrapping is working fine, we loading the info into our Mongo DB right, and our web app looks great. However, she wants us to do some adjustments to our current web app to include all four of the hemisphere images.
+## Overview
+Our initial dilevery to Dana with filters on sighting dates was impressive. However, it would be more useful if the filters could be applied to other data elements. Here's what we are doing in this challenge; add additional filters for the citi, state, country, and shape. Not only we could do independent search by these individual elements, but we could filter using multiple filters all at one time.
 
 ## Results
-### [Hemisphere images with titles (without boothstrapping)](https://github.com/neerajain9/Mission-to-Mars/blob/Data-Science/Resources/Hemispheres_Before%20Bootstrapping.png)
-![](https://github.com/neerajain9/Mission-to-Mars/blob/Data-Science/Resources/Hemispheres_Before%20Bootstrapping.png?raw=true)
+Now, that we have implemented additional filters. We are excited to share how these can be used.
 
-### [Hemisphere images with titles (after boothstrapping)](https://github.com/neerajain9/Mission-to-Mars/blob/Data-Science/Resources/Hemispheres_After%20Bootstrapping.png)
-![](https://github.com/neerajain9/Mission-to-Mars/blob/Data-Science/Resources/Hemispheres_After%20Bootstrapping.png?raw=true)
+By default, the user sees the entire data set as they visit the sight for the first time.
 
-### [Formatted Table (after boothstrapping)](https://github.com/neerajain9/Mission-to-Mars/blob/Data-Science/Resources/Table_After%20Bootstrapping.png)
-There's a lot going on in this tables. We have added 
-1. Stripes to improve readability
-1. Highlighted bold the tabel columns and rows
-1. Added row hovering to add some nice affects to our table
-1. Added table borders
-1. Added responsiveness to our table
+Previously, we were searching only with dates, so the user/analyst would have to put the date in and then hit the provided "Filter Table" button to see the filtered result based on the dates.
 
-![](https://github.com/neerajain9/Mission-to-Mars/blob/Data-Science/Resources/Table_After%20Bootstrapping.png?raw=true)
+Our new filters are even easier to get the results we are looking for. The search field(s) track changes on the fly and filter the results as user would types in their query. We have removed the "Filter Table" button to enhance the user experience. Not only this, user can enter multiple search criterion like date, city, state, country, and shape and it will filter the results on the fly without any issues. The search is built upon the sequence of changes in the query fields. For example:
 
-### [Our Final Web App](https://github.com/neerajain9/Mission-to-Mars/blob/Data-Science/Resources/final%20product.png)
+[State: "ca"](https://github.com/neerajain9/UFOs/blob/Data-Science/Resources/State%20Search1.png) will bring up all the sigthing traced in California.
+![](https://github.com/neerajain9/UFOs/blob/Data-Science/Resources/State%20Search1.png?raw=true)
 
-![](https://github.com/neerajain9/Mission-to-Mars/blob/Data-Science/Resources/final%20product.png?raw=true)
+[City: "el cajon"](https://github.com/neerajain9/UFOs/blob/Data-Science/Resources/City-State%20Search1.png) will further narrow the search to city El' Cajon in state California.
+![](https://github.com/neerajain9/UFOs/blob/Data-Science/Resources/City-State%20Search1.png?raw=true)
 
-We are proud of ourself to present this to Robin. Here's what the changes are to this page after our work.
-1. We have styled our "Scrape New Data" button from "primary" to "info" and used bootstrap components using <a> tags.
-1. Our table looks really impressive with hover feature
-1. Our entire web app adopts to the changing screen size
-    1. main image is responsive
-    1. table image is responsive
-    1. hemisphere images are responsive
-1. Finally, our scrapping is fetching the updated information everytime we hit "Scrape New Data" button
+Likewise, [additional search queries](https://github.com/neerajain9/UFOs/blob/Data-Science/Resources/City-State-Shape%20Search1.png) can be entered to narrow the results further to the user's precise analysis.
+![](https://github.com/neerajain9/UFOs/blob/Data-Science/Resources/City-State-Shape%20Search1.png?raw=true)
 
+Isn't that cool?
+
+Now, the analysts can see all the findings about these sightings, on the fly, using multiple criterion.
+
+**Note:** As we clear up the filter the [original/default](https://github.com/neerajain9/UFOs/blob/Data-Science/Resources/default%20view.png) view is regained.
+
+![](https://github.com/neerajain9/UFOs/blob/Data-Science/Resources/default%20view.png?raw=true)
 
 ## Summary
-Mission accomplished! We have successfully scraped the data from web, cleaned up & loaded into MongoDB, used flask to finally present it in an impressive manner. 
+The app works great! However, like most software applications, our design strategy has certain compromises as well.
+
+### Drawback(s)
+- Our current database (or data source) is relatively small. So, our queries appears to work really fast as we type in. However, as the database grows with time, the search will become sluggish.
+
+**Reason:** As we add or change our query parameters, our current application design filters the original data source and rebuilds the table everytime. This is an overkill of resources. Also, these searches could be expensive if run at server side.
+
+### Our Recommendations
+There may be mutliple ways to improve the app as we consider user experience and performance of the app. Here, we are discussing the following two.
+
+1. Incorporate methods where the searches could be cached and we do not have to rebuild the table over and over.
+1. From user's experience perspective we think it is currently painful to clear all the query fields to see the default dataset. Adding an auto clear button would be a great addion to the user experience.
+
+We will continue to look for the improvements in our data extraction process and then querying on these data sets more effectively with a forward looking approach. We will share and incorporate these insights in our upcoming projects.
